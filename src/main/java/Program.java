@@ -70,9 +70,9 @@ public class Program implements Runnable {
                 // perform check and track elapsed time
                 boolean isAnagram = check.isAnagram(textA, textB);
                 if (isAnagram) {
-                    System.out.println("Whoop whoop, we got an anagram here.");
+                    System.out.println("'" + textA + "'' is an anagram of '" + textB + "'");
                 } else {
-                    System.out.println("Come on don't waste my time.");
+                    System.out.println("'" + textA + "'' is not an anagram of '" + textB + "'");
                 }
             }
         }

@@ -18,14 +18,14 @@ public class AnagramCheckCompose implements AnagramCheck {
     public boolean isAnagram(String textA, String textB) {
         boolean result = false;
         for (AnagramCheck anagramCheck : checkers) {
-            long time = System.currentTimeMillis();
+            long time = System.nanoTime();
             // it is expected here that all checkers do a proper job so that result is
             // always overwritten
             result = anagramCheck.isAnagram(textA, textB);
             if (printTime) {
-                long elapsed = System.currentTimeMillis() - time;
+                long elapsed = System.nanoTime() - time;
                 System.out
-                        .println("Elapsed time for " + anagramCheck.getClass().getSimpleName() + ": " + elapsed + "ms");
+                        .println("Elapsed time for " + anagramCheck.getClass().getSimpleName() + ": " + elapsed + "ns");
             }
         }
         return result;
