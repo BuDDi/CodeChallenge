@@ -1,32 +1,19 @@
 package check;
 
-public class AnagramCheckSimple implements AnagramCheck {
+public class AnagramCheckSimple extends AbstractAnagramCheck {
+
+    public AnagramCheckSimple(TextPreprocessor preprocessor) {
+        super(preprocessor);
+    }
 
     @Override
-    public boolean isAnagram(String textA, String textB) {
-        // compare textA with textB
-        // textA must contain the same letters as textB but in different positions
-
-        // step 1: remove all white spaces and compare the length of both texts
-        textA = textA.replaceAll("\\s+", "");
-        textB = textB.replaceAll("\\s+", "");
-
-        if (textA.length() != textB.length()) {
-            return false;
-        }
-
-        textA = textA.toLowerCase();
-        textB = textB.toLowerCase();
-        // step 2: check if the strings are not the exact same
-        if (textA.equals(textB)) {
-            return false;
-        }
-
+    public boolean isAnagramImpl(String textA, String textB) {
         StringBuilder textBSb = new StringBuilder(textB);
-        // step 3: check every character in textA to be contained also in textB
+        // check every character in textA to be contained also in textB
         for (int i = 0; i < textA.length(); i++) {
             char a = textA.charAt(i);
             int foundAt = -1;
+            // scan for the same letter in textB
             for (int j = 0; j < textBSb.length(); j++) {
                 char b = textBSb.charAt(j);
                 if (a == b) {

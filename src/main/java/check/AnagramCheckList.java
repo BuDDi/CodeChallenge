@@ -3,25 +3,14 @@ package check;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AnagramCheckList implements AnagramCheck {
+public class AnagramCheckList extends AbstractAnagramCheck {
+
+    public AnagramCheckList(TextPreprocessor preprocessor) {
+        super(preprocessor);
+    }
 
     @Override
-    public boolean isAnagram(String textA, String textB) {
-        // step 1: remove all white spaces and compare the length of both texts
-        textA = textA.replaceAll("\\s+", "");
-        textB = textB.replaceAll("\\s+", "");
-
-        if (textA.length() != textB.length()) {
-            return false;
-        }
-
-        textA = textA.toLowerCase();
-        textB = textB.toLowerCase();
-        // step 2: check if the strings are not the exact same
-        if (textA.equals(textB)) {
-            return false;
-        }
-
+    protected boolean isAnagramImpl(String textA, String textB) {
         List<Character> a = convertToList(textA);
         List<Character> b = convertToList(textB);
 
@@ -33,5 +22,4 @@ public class AnagramCheckList implements AnagramCheck {
                 .collect(Collectors.toList());
         return chars;
     }
-
 }
